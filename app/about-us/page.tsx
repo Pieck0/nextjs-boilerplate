@@ -36,7 +36,7 @@ export default async function AboutPage() {
             </div>
             <div className="rounded-2xl overflow-hidden shadow-2xl">
               <Image
-                src="/banners/2.jfif"
+                src="/banners/2.png"
                 alt="Loop by Family story"
                 width={600}
                 height={400}
