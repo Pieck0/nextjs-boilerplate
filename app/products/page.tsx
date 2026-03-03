@@ -114,7 +114,7 @@ export default async function ProductsPage() {
                 <div className="relative h-80 bg-linear-to-br from-amber-200 to-orange-200 overflow-hidden">
                   <div className="absolute inset-0 flex items-center justify-center">
                     <Image
-                      src="/banners/3.jfif"
+                      src="/banners/3.png"
                       alt="Loop by Family story"
                       width={600}
                       height={400}
