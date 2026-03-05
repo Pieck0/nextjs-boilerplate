@@ -1,5 +1,6 @@
-import { z } from 'zod';
-import { baseProcedure, createTRPCRouter } from '../init';
+import { z } from "zod";
+import { baseProcedure, createTRPCRouter } from "../init";
+import prisma from "@/lib/prisma";
 
 export const appRouter = createTRPCRouter({
   hello: baseProcedure
@@ -8,9 +9,12 @@ export const appRouter = createTRPCRouter({
         text: z.string(),
       }),
     )
-    .query((opts) => {
+    .query(async (opts) => {
+      const test = await prisma.test.findMany();
+
       return {
         greeting: `hello ${opts.input.text}`,
+        result: test,
       };
     }),
 });
