@@ -4,6 +4,8 @@ import "./globals.css";
 import { NextIntlClientProvider } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { TRPCProvider } from "@/trpc/client";
+import { getQueryClient, trpc } from "@/trpc/server";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,56 +23,60 @@ export const metadata: Metadata = {
 };
 
 async function Header() {
+  const t = await getTranslations("HomePage");
 
-  const t = await getTranslations('HomePage');
+  const test = await trpc.hello({ text: "world" });
+
+  console.log("TEST", test);
 
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50">
-      <nav className="mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <div className="shrink-0">
-            <a className="text-2xl font-bold text-amber-700" href="/">
-              Loop by Family
-            </a>
-          </div>
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
-            <LanguageSwitcher />
-              <a
-                href="/"
-                className="text-gray-700 hover:text-amber-600 px-4 py-2 text-base font-semibold transition-colors relative group"
-              >
-                {t('main_page')}
-              </a>
-              <a
-                href="/products"
-                className="text-gray-700 hover:text-amber-600 px-4 py-2 text-base font-semibold transition-colors relative group"
-              >
-                {t('products')}
-              </a>
-              <a
-                href="/about-us"
-                className="text-gray-700 hover:text-amber-600 px-4 py-2 text-base font-semibold transition-colors relative group"
-              >
-                {t('about_us')}
-              </a>
-              <a
-                href="/contact"
-                className="text-gray-700 hover:text-amber-600 px-4 py-2 text-base font-semibold transition-colors relative group"
-              >
-                {t('contact')}
+    <TRPCProvider>
+      <header className="bg-white shadow-sm sticky top-0 z-50">
+        <nav className="mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="shrink-0">
+              <a className="text-2xl font-bold text-amber-700" href="/">
+                Loop by Family
               </a>
             </div>
+            <div className="hidden md:block">
+              <div className="ml-10 flex items-baseline space-x-8">
+                <LanguageSwitcher />
+                <a
+                  href="/"
+                  className="text-gray-700 hover:text-amber-600 px-4 py-2 text-base font-semibold transition-colors relative group"
+                >
+                  {t("main_page")}
+                </a>
+                <a
+                  href="/products"
+                  className="text-gray-700 hover:text-amber-600 px-4 py-2 text-base font-semibold transition-colors relative group"
+                >
+                  {t("products")}
+                </a>
+                <a
+                  href="/about-us"
+                  className="text-gray-700 hover:text-amber-600 px-4 py-2 text-base font-semibold transition-colors relative group"
+                >
+                  {t("about_us")}
+                </a>
+                <a
+                  href="/contact"
+                  className="text-gray-700 hover:text-amber-600 px-4 py-2 text-base font-semibold transition-colors relative group"
+                >
+                  {t("contact")}
+                </a>
+              </div>
+            </div>
           </div>
-        </div>
-      </nav>
-    </header>
+        </nav>
+      </header>
+    </TRPCProvider>
   );
 }
 
 async function Footer() {
-
-  const t = await getTranslations('HomePage');
+  const t = await getTranslations("HomePage");
 
   return (
     <footer className="bg-gray-900 text-white">
@@ -80,19 +86,17 @@ async function Footer() {
             <h3 className="text-xl font-bold mb-4 text-amber-400">
               Loop by Family
             </h3>
-            <p className="text-gray-400 text-sm">
-              {t('footer_description')}
-            </p>
+            <p className="text-gray-400 text-sm">{t("footer_description")}</p>
           </div>
           <div>
-            <h4 className="font-semibold mb-4">{t('quick_links')}</h4>
+            <h4 className="font-semibold mb-4">{t("quick_links")}</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <a
                   href="/"
                   className="text-gray-400 hover:text-amber-400 transition-colors"
                 >
-                  {t('main_page')}
+                  {t("main_page")}
                 </a>
               </li>
               <li>
@@ -100,7 +104,7 @@ async function Footer() {
                   href="/products"
                   className="text-gray-400 hover:text-amber-400 transition-colors"
                 >
-                {t('products')}
+                  {t("products")}
                 </a>
               </li>
               <li>
@@ -108,20 +112,20 @@ async function Footer() {
                   href="/about-us"
                   className="text-gray-400 hover:text-amber-400 transition-colors"
                 >
-                {t('about_us')}
+                  {t("about_us")}
                 </a>
               </li>
             </ul>
           </div>
           <div>
-            <h4 className="font-semibold mb-4">{t('contact')}</h4>
+            <h4 className="font-semibold mb-4">{t("contact")}</h4>
             <ul className="space-y-2 text-sm text-gray-400">
               <li>Email: hello@Loop by Family.com</li>
-              <li>{t('phone')}: +1 (555) 123-4567</li>
+              <li>{t("phone")}: +1 (555) 123-4567</li>
             </ul>
           </div>
           <div>
-            <h4 className="font-semibold mb-4">{t('follow_us')}</h4>
+            <h4 className="font-semibold mb-4">{t("follow_us")}</h4>
             <div className="flex space-x-4">
               <a
                 href="https://www.instagram.com/loopbyfamily/"
@@ -140,9 +144,7 @@ async function Footer() {
           </div>
         </div>
         <div className="mt-8 pt-8 border-t border-gray-800 text-center text-sm text-gray-400">
-          <p>
-            &copy; 2026 Loop by Family. {t('footer_rights')}
-          </p>
+          <p>&copy; 2026 Loop by Family. {t("footer_rights")}</p>
         </div>
       </div>
     </footer>
