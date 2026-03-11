@@ -36,7 +36,7 @@ async function Header() {
           <div className="flex justify-between items-center h-16">
             <div className="shrink-0">
               <a className="text-2xl font-bold text-amber-700" href="/">
-                Loop by Family
+                Loop by Family {test.result.map((item) => item.id).join(", ")}
               </a>
             </div>
             <div className="hidden md:block">
