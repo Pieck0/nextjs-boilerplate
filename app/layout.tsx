@@ -25,10 +25,6 @@ export const metadata: Metadata = {
 async function Header() {
   const t = await getTranslations("HomePage");
 
-  const test = await trpc.hello({ text: "world" });
-
-  console.log("TEST", test);
-
   return (
     <TRPCProvider>
       <header className="bg-white shadow-sm sticky top-0 z-50">
@@ -36,7 +32,7 @@ async function Header() {
           <div className="flex justify-between items-center h-16">
             <div className="shrink-0">
               <a className="text-2xl font-bold text-amber-700" href="/">
-                Loop by Family {test.result.map((item) => item.id).join(", ")}
+                Loop by Family
               </a>
             </div>
             <div className="hidden md:block">
