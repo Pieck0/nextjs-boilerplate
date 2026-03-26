@@ -1,22 +1,8 @@
-import { z } from "zod";
-import { baseProcedure, createTRPCRouter } from "../init";
-import prisma from "@/lib/prisma";
+import { createTRPCRouter } from "../init";
+import { productRouter } from "./productRouter";
 
 export const appRouter = createTRPCRouter({
-  hello: baseProcedure
-    .input(
-      z.object({
-        text: z.string(),
-      }),
-    )
-    .query(async (opts) => {
-      const test = await prisma.test.findMany();
-
-      return {
-        greeting: `hello ${opts.input.text}`,
-        result: test,
-      };
-    }),
+  product: productRouter,
 });
 
 export type AppRouter = typeof appRouter;
