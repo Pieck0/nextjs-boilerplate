@@ -1,63 +1,17 @@
+import ProductGallery from "@/components/products/ProductGallery";
+import ProductTile from "@/components/products/ProductTile";
+import { trpc } from "@/trpc/server";
 import { getTranslations } from "next-intl/server";
-import Image from "next/image";
 
 export default async function ProductsPage() {
   const t = await getTranslations("ProductsPage");
 
-  // Sample product data - in a real app, this would come from a database
-  const products = [
-    {
-      id: 1,
-      name: t("product_beanie_name"),
-      category: t("category_hats"),
-      price: "89.99",
-      image: "/images/products/beanie.jpg",
-      description: t("product_beanie_desc"),
-    },
-    {
-      id: 2,
-      name: t("product_scarf_name"),
-      category: t("category_scarves"),
-      price: "119.99",
-      image: "/images/products/scarf.jpg",
-      description: t("product_scarf_desc"),
-    },
-    {
-      id: 3,
-      name: t("product_mittens_name"),
-      category: t("category_gloves"),
-      price: "69.99",
-      image: "/images/products/mittens.jpg",
-      description: t("product_mittens_desc"),
-    },
-    {
-      id: 4,
-      name: t("product_booties_name"),
-      category: t("category_footwear"),
-      price: "79.99",
-      image: "/images/products/booties.jpg",
-      description: t("product_booties_desc"),
-    },
-    {
-      id: 5,
-      name: t("product_sweater_name"),
-      category: t("category_clothing"),
-      price: "199.99",
-      image: "/images/products/sweater.jpg",
-      description: t("product_sweater_desc"),
-    },
-    {
-      id: 6,
-      name: t("product_blanket_name"),
-      category: t("category_blankets"),
-      price: "249.99",
-      image: "/images/products/blanket.jpg",
-      description: t("product_blanket_desc"),
-    },
-  ];
+  const products = await trpc.product.getAllProducts();
 
   return (
     <div className="grow">
+      <ProductGallery />
+
       {/* Hero Section */}
       <section className="bg-linear-to-br from-amber-50 to-orange-50 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -72,81 +26,12 @@ export default async function ProductsPage() {
         </div>
       </section>
 
-      {/* Filter Section */}
-      {/* <section className="py-8 bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <div className="flex items-center gap-4">
-              <span className="text-gray-700 font-semibold">{t('filter_by')}:</span>
-              <select className="px-4 py-2 border-2 border-gray-300 rounded-lg focus:border-amber-500 focus:outline-none">
-                <option value="all">{t('filter_all')}</option>
-                <option value="hats">{t('category_hats')}</option>
-                <option value="scarves">{t('category_scarves')}</option>
-                <option value="gloves">{t('category_gloves')}</option>
-                <option value="footwear">{t('category_footwear')}</option>
-                <option value="clothing">{t('category_clothing')}</option>
-                <option value="blankets">{t('category_blankets')}</option>
-              </select>
-            </div>
-            <div className="flex items-center gap-4">
-              <span className="text-gray-700 font-semibold">{t('sort_by')}:</span>
-              <select className="px-4 py-2 border-2 border-gray-300 rounded-lg focus:border-amber-500 focus:outline-none">
-                <option value="featured">{t('sort_featured')}</option>
-                <option value="price-low">{t('sort_price_low')}</option>
-                <option value="price-high">{t('sort_price_high')}</option>
-                <option value="newest">{t('sort_newest')}</option>
-              </select>
-            </div>
-          </div>
-        </div>
-      </section> */}
-
       {/* Products Grid */}
       <section className="py-16 bg-white">
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {products.map((product) => (
-              <div
-                key={product.id}
-                className="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden"
-              >
-                {/* Product Image */}
-                <div className="relative h-80 bg-linear-to-br from-amber-200 to-orange-200 overflow-hidden">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <Image
-                      src="/banners/3.png"
-                      alt="Loop by Family story"
-                      width={600}
-                      height={400}
-                      className="object-fit"
-                    />
-                    {/* <svg className="w-32 h-32 text-white opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg> */}
-                  </div>
-                  {/* <div className="absolute top-4 right-4 bg-amber-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                    {product.category}
-                  </div> */}
-                </div>
-
-                {/* Product Info */}
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-amber-600 transition-colors">
-                    {product.name}
-                  </h3>
-                  <p className="text-gray-600 mb-4 line-clamp-2">
-                    {product.description}
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-3xl font-bold text-amber-600">
-                      {product.price} {t("currency")}
-                    </span>
-                    {/* <button className="bg-amber-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-amber-700 transition-colors">
-                      {t("add_to_cart")}
-                    </button> */}
-                  </div>
-                </div>
-              </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            {products.map((product, idx) => (
+              <ProductTile product={product} key={`product-tile-${idx}`} />
             ))}
           </div>
         </div>
