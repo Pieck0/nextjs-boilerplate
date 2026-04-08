@@ -1,5 +1,5 @@
+import ProductGallery from "@/components/products/ProductGallery";
 import ProductTile from "@/components/products/ProductTile";
-import { getCurrentLanguage } from "@/lib/functions/getCurrentLanguage";
 import { trpc } from "@/trpc/server";
 import { getTranslations } from "next-intl/server";
 
@@ -10,6 +10,8 @@ export default async function ProductsPage() {
 
   return (
     <div className="grow">
+      <ProductGallery />
+
       {/* Hero Section */}
       <section className="bg-linear-to-br from-amber-50 to-orange-50 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -24,39 +26,10 @@ export default async function ProductsPage() {
         </div>
       </section>
 
-      {/* Filter Section */}
-      {/* <section className="py-8 bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <div className="flex items-center gap-4">
-              <span className="text-gray-700 font-semibold">{t('filter_by')}:</span>
-              <select className="px-4 py-2 border-2 border-gray-300 rounded-lg focus:border-amber-500 focus:outline-none">
-                <option value="all">{t('filter_all')}</option>
-                <option value="hats">{t('category_hats')}</option>
-                <option value="scarves">{t('category_scarves')}</option>
-                <option value="gloves">{t('category_gloves')}</option>
-                <option value="footwear">{t('category_footwear')}</option>
-                <option value="clothing">{t('category_clothing')}</option>
-                <option value="blankets">{t('category_blankets')}</option>
-              </select>
-            </div>
-            <div className="flex items-center gap-4">
-              <span className="text-gray-700 font-semibold">{t('sort_by')}:</span>
-              <select className="px-4 py-2 border-2 border-gray-300 rounded-lg focus:border-amber-500 focus:outline-none">
-                <option value="featured">{t('sort_featured')}</option>
-                <option value="price-low">{t('sort_price_low')}</option>
-                <option value="price-high">{t('sort_price_high')}</option>
-                <option value="newest">{t('sort_newest')}</option>
-              </select>
-            </div>
-          </div>
-        </div>
-      </section> */}
-
       {/* Products Grid */}
       <section className="py-16 bg-white">
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
             {products.map((product, idx) => (
               <ProductTile product={product} key={`product-tile-${idx}`} />
             ))}

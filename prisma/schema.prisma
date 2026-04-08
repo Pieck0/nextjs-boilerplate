@@ -20,6 +20,11 @@ model product {
   image        String?
   categoryId   Int?
   category     product_category?     @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  photos       product_photo[]
+  length       Float?
+  width        Float?
+  height       Float?
+  diameter     Float?
 }
 
 model product_translation {
@@ -27,8 +32,15 @@ model product_translation {
   productId    Int
   product      product @relation(fields: [productId], references: [id], onDelete: Cascade)
   languageCode String
-  name         String
-  description  String
+  name         String?
+  description  String?
+}
+
+model product_photo {
+  id        Int     @id @default(autoincrement())
+  productId Int
+  product   product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  url       String
 }
 
 model product_category {
