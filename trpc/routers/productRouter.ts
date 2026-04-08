@@ -25,6 +25,7 @@ export const productRouter = createTRPCRouter({
               languageCode: options?.languageCode || process.env.DEFAULT_LANG,
             },
           },
+          photos: true,
         },
       });
 
