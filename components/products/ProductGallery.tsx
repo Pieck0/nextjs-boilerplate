@@ -35,7 +35,7 @@ export default function ProductGallery() {
       className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4"
       onMouseDown={handleBackdropClick}
     >
-      <div className="bg-white rounded-md max-w-6xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative">
+      <div className="bg-white rounded-md max-w-6xl w-full max-h-[90vh] overflow-y-scroll md:overflow-hidden scrollbar shadow-2xl relative h-full md:h-auto">
         {/* Close Button */}
         <button
           onClick={onClose}
@@ -57,12 +57,11 @@ export default function ProductGallery() {
           </svg>
         </button>
 
-        <div className="grid md:grid-cols-2">
-          {/* Left Side - Product Image */}
-          <div className="relative h-96 md:h-150">
-            <div className="absolute inset-0 flex items-center justify-center flex-col">
+        <div className="flex flex-col md:flex-row h-full">
+          <div className="relative flex-1 flex">
+            <div className="flex items-center justify-center flex-col p-4">
               <Carousel
-                className="ml-4 bg-linear-to-br from-amber-200 to-orange-200 p-4 rounded-md"
+                className="bg-linear-to-br from-amber-200 to-orange-200 p-4 rounded-md"
                 opts={{ loop: true }}
               >
                 <CarouselContent className="flex items-center">
@@ -78,7 +77,7 @@ export default function ProductGallery() {
                             alt={`Loop by Family product ${idx + 1}`}
                             width={600}
                             height={400}
-                            className="object-cover w-auto aspect-square"
+                            className="object-cover w-auto h-auto aspect-square"
                             loading="eager"
                           />
                         </CarouselItem>
@@ -91,8 +90,7 @@ export default function ProductGallery() {
             </div>
           </div>
 
-          {/* Right Side - Product Name and Description */}
-          <div className="p-8 flex flex-col overflow-y-scroll h-96 md:h-150 scrollbar">
+          <div className="p-8 flex flex-none md:flex-1 flex-col md:overflow-y-scroll h-96 md:h-150 scrollbar">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               {productGallery.name}
             </h2>
