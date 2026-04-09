@@ -2,11 +2,16 @@ import ProductGallery from "@/components/products/ProductGallery";
 import ProductTile from "@/components/products/ProductTile";
 import { trpc } from "@/trpc/server";
 import { getTranslations } from "next-intl/server";
+import { getCurrentLanguage } from "@/lib/functions/getCurrentLanguage";
 
 export default async function ProductsPage() {
   const t = await getTranslations("ProductsPage");
 
-  const products = await trpc.product.getAllProducts();
+  const languageCode = await getCurrentLanguage();
+
+  const products = await trpc.product.getAllProducts({
+    languageCode: languageCode,
+  });
 
   return (
     <div className="grow">

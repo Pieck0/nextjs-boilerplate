@@ -1,9 +1,10 @@
-export const getCurrentLanguage = () => {
-  const cookie = document.cookie
-    .split("; ")
-    .find((row) => row.startsWith("locale="));
-  if (cookie) {
-    return cookie.split("=")[1];
-  }
+import { cookies } from "next/headers";
+
+export const getCurrentLanguage = async () => {
+  const cookieStore = await cookies();
+  const locale = cookieStore.get("locale");
+
+  if (locale?.value) return locale?.value;
+
   return process.env.DEFAULT_LANG || "pl";
 };
