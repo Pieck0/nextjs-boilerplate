@@ -1,8 +1,8 @@
+import { getCurrentLanguage } from "@/lib/functions/getCurrentLanguage";
+import { getTranslations } from "next-intl/server";
+import { trpc } from "@/trpc/server";
 import ProductGallery from "@/components/products/ProductGallery";
 import ProductTile from "@/components/products/ProductTile";
-import { trpc } from "@/trpc/server";
-import { getTranslations } from "next-intl/server";
-import { getCurrentLanguage } from "@/lib/functions/getCurrentLanguage";
 
 export default async function ProductsPage() {
   const t = await getTranslations("ProductsPage");
@@ -17,7 +17,6 @@ export default async function ProductsPage() {
     <div className="grow">
       <ProductGallery />
 
-      {/* Hero Section */}
       <section className="bg-linear-to-br from-amber-50 to-orange-50 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">

@@ -13,6 +13,29 @@ datasource db {
   provider = "postgresql"
 }
 
+model session {
+  id      String   @id @default(cuid())
+  expires DateTime
+  cart    cart?
+}
+
+model cart {
+  id        Int         @id @default(autoincrement())
+  items     cart_item[]
+  sessionId String      @unique
+  session   session     @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+}
+
+model cart_item {
+  cart      cart    @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  cartId    Int
+  productId Int
+  product   product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  quantity  Int
+
+  @@id([cartId, productId])
+}
+
 model product {
   id           Int                   @id @default(autoincrement())
   translations product_translation[]
@@ -25,6 +48,7 @@ model product {
   width        Float?
   height       Float?
   diameter     Float?
+  cart_items   cart_item[]
 }
 
 model product_translation {

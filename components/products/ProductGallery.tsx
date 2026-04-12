@@ -1,7 +1,7 @@
 "use client";
 
 import { useAtom } from "jotai";
-import { productGalleryAtom } from "../atoms/product-gallery.atom";
+import { productGalleryAtom } from "../../lib/atoms/product-gallery.atom";
 import Image from "next/image";
 import {
   Carousel,
