@@ -6,7 +6,16 @@ import { NextIntlClientProvider } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { trpc } from "@/trpc/server";
+import MessageContainer from "@/components/MessageContainer";
+import { MdOutlineMenu } from "react-icons/md";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+} from "@/components/ui/select";
+import { MenuDrawer } from "@/components/MenuDrawer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,34 +44,37 @@ async function Header() {
               Loop by Family
             </a>
           </div>
-          <div className="hidden md:block">
+          <div className="md:block">
             <div className="ml-10 flex space-x-8 items-center">
               <LanguageSwitcher />
-              <a
-                href="/"
-                className="text-gray-700 hover:text-amber-600 px-4 py-2 text-base font-semibold transition-colors relative group"
-              >
-                {t("main_page")}
-              </a>
-              <a
-                href="/products"
-                className="text-gray-700 hover:text-amber-600 px-4 py-2 text-base font-semibold transition-colors relative group"
-              >
-                {t("products")}
-              </a>
-              <a
-                href="/about-us"
-                className="text-gray-700 hover:text-amber-600 px-4 py-2 text-base font-semibold transition-colors relative group"
-              >
-                {t("about_us")}
-              </a>
-              <a
-                href="/contact"
-                className="text-gray-700 hover:text-amber-600 px-4 py-2 text-base font-semibold transition-colors relative group"
-              >
-                {t("contact")}
-              </a>
+              <div className="min-[1100px]:flex space-x-8 items-center hidden">
+                <a
+                  href="/"
+                  className="text-gray-700 hover:text-amber-600 px-4 py-2 text-base font-semibold transition-colors relative group"
+                >
+                  {t("main_page")}
+                </a>
+                <a
+                  href="/products"
+                  className="text-gray-700 hover:text-amber-600 px-4 py-2 text-base font-semibold transition-colors relative group"
+                >
+                  {t("products")}
+                </a>
+                <a
+                  href="/about-us"
+                  className="text-gray-700 hover:text-amber-600 px-4 py-2 text-base font-semibold transition-colors relative group"
+                >
+                  {t("about_us")}
+                </a>
+                <a
+                  href="/contact"
+                  className="text-gray-700 hover:text-amber-600 px-4 py-2 text-base font-semibold transition-colors relative group"
+                >
+                  {t("contact")}
+                </a>
+              </div>
               <CartDrawer />
+              <MenuDrawer className="min-[1100px]:hidden" />
             </div>
           </div>
         </div>
@@ -161,7 +173,7 @@ export default async function RootLayout({
           <NextIntlClientProvider>
             <div className="min-h-screen flex flex-col relative">
               <Header />
-
+              <MessageContainer />
               {children}
 
               <Footer />

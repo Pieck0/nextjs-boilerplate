@@ -79,6 +79,7 @@
   },
   "HomePage": {
     "about_us": "About Us",
+    "cart_checkout": "Checkout",
     "cart_empty": "Your cart is empty",
     "contact": "Contact",
     "follow_us": "Follow us",
@@ -106,6 +107,7 @@
   },
   "ProductsPage": {
     "add_to_cart": "Add to Cart",
+    "cart_update_error": "Cart update error",
     "category_blankets": "Blankets",
     "category_clothing": "Clothing",
     "category_footwear": "Booties & Socks",

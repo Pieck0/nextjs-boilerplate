@@ -1,17 +1,19 @@
 "use client";
 
-import { CartAction, changeCartStateAtom } from "@/lib/atoms/cart.atom";
+import { messageAtom } from "@/lib/atoms/message.atom";
 import { productGalleryAtom } from "@/lib/atoms/product-gallery.atom";
+import { CartAction } from "@/lib/enums/CartAction.enum";
 import { useProductQuantityInCart } from "@/lib/hooks/useProductQuantityInCart";
 import { RouterOutput } from "@/lib/trpcInferTypes";
+import { trpc } from "@/trpc/client";
 import { useSetAtom } from "jotai";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa6";
-import { Button } from "../ui/button";
-import { useRef, useState } from "react";
-import { trpc } from "@/trpc/client";
 import { ClipLoader } from "react-spinners";
+import { MessageType } from "../MessageContainer";
+import { Button } from "../ui/button";
 
 export default function ProductTile({
   product,
@@ -19,34 +21,36 @@ export default function ProductTile({
   product: RouterOutput["product"]["getAllProducts"][number];
 }) {
   const t = useTranslations("ProductsPage");
+  const utils = trpc.useUtils();
 
   const setProductGallery = useSetAtom(productGalleryAtom);
-  const changeCartState = useSetAtom(changeCartStateAtom);
+  const setMessage = useSetAtom(messageAtom);
 
   const updateTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const [quantity, setQuantity] = useState<number>(0);
+  const [currentQuantity, setCurrentQuantity] = useState<number>(0);
 
   const productQuantityInCart = useProductQuantityInCart(product.id);
-  const {
-    mutate: changeQuantity,
-    isPending,
-    isError,
-    isSuccess,
-  } = trpc.cart.changeCartItemQuantity.useMutation({
-    onSuccess: (data) => {
-      console.log(data);
-      changeCartState({
-        item: {
-          id: product.id,
-          price: product.price,
-          name: product.name,
-          image: product.image,
-        },
-        quantity: data?.quantity ?? 0,
-      });
-    },
-  });
+
+  const { mutate: changeQuantity, isPending } =
+    trpc.cart.changeCartItemQuantity.useMutation({
+      onSuccess: (data) => {
+        utils.cart.getCart.invalidate();
+        if (data) setCurrentQuantity(data.quantity);
+      },
+      onError: () => {
+        setMessage({
+          message: "ProductsPage.cart_update_error",
+          type: MessageType.ERROR,
+        });
+      },
+    });
+
+  useEffect(() => {
+    setQuantity(productQuantityInCart);
+    setCurrentQuantity(productQuantityInCart);
+  }, [productQuantityInCart]);
 
   function onProductTileClick() {
     setProductGallery(product);
@@ -59,7 +63,7 @@ export default function ProductTile({
         id: product.id,
         quantity: q,
       });
-    }, 250);
+    }, 750);
   }
 
   function onQuantityChange(action: CartAction) {
@@ -76,7 +80,7 @@ export default function ProductTile({
   return (
     <div
       key={product.id}
-      className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden"
+      className="bg-white max-w-sm rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden"
     >
       <div onClick={onProductTileClick}>
         {/* Product Image */}
@@ -125,7 +129,7 @@ export default function ProductTile({
             {isPending ? (
               <ClipLoader size={24} color="#ffba00" />
             ) : (
-              productQuantityInCart
+              currentQuantity
             )}
           </p>
           <Button

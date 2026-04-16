@@ -78,6 +78,7 @@
   },
   "HomePage": {
     "about_us": "O nas",
+    "cart_checkout": "Zapłać",
     "cart_empty": "Twój koszyk jest pusty",
     "contact": "Kontakt",
     "follow_us": "Obserwuj nas",
@@ -105,6 +106,7 @@
   },
   "ProductsPage": {
     "add_to_cart": "Dodaj do Koszyka",
+    "cart_update_error": "Błąd aktualizacji koszyka",
     "category_blankets": "Kocyki",
     "category_clothing": "Ubrania",
     "category_footwear": "Buciki i Skarpetki",

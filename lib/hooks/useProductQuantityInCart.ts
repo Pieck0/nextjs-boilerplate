@@ -1,7 +1,10 @@
-import { useAtomValue } from "jotai";
-import { cartAtom } from "../atoms/cart.atom";
+"use client";
 
-export function useProductQuantityInCart(itemId: number) {
-  const cart = useAtomValue(cartAtom);
-  return cart.find((item) => item.item.id === itemId)?.quantity;
+import { trpc } from "@/trpc/client";
+
+export function useProductQuantityInCart(productId: number) {
+  const { data: cart } = trpc.cart.getCart.useQuery();
+  return (
+    cart?.items.find((item) => item.product.id === productId)?.quantity ?? 0
+  );
 }
