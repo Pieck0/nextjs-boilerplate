@@ -33,6 +33,11 @@
     "cta_subtitle": "Odkryj naszą kolekcję ręcznie robionych wełnianych akcesoriów dla Twoich maluchów",
     "cta_button": "Zobacz Kolekcję"
   },
+  "CheckoutPage": {
+    "cart": "Koszyk",
+    "cart_empty": "Twój koszyk jest pusty",
+    "modal_content_remove_cart_item": "Czy na pewno chcesz usunąć ten produkt z koszyka?"
+  },
   "ContactPage": {
     "hero_title": "Skontaktuj się z nami",
     "hero_subtitle": "Chętnie się z Tobą skontaktujemy! Czy masz pytanie, chcesz zamówić coś na specjalne zamówienie, czy po prostu chcesz się przywitać",
@@ -159,5 +164,7 @@
     "testimonials_subtitle": "Prawdziwe opinie naszych zadowolonych klientów",
     "testimonials_title": "Co Mówią Rodzice",
     "width": "Szerokość"
-  }
+  },
+  "close": "Zamknij",
+  "confirm": "Potwierdź"
 }

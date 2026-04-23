@@ -14,6 +14,7 @@ import { FaMinus, FaPlus } from "react-icons/fa6";
 import { ClipLoader } from "react-spinners";
 import { MessageType } from "../MessageContainer";
 import { Button } from "../ui/button";
+import { useProductCartManagement } from "@/lib/hooks/useProductCartManagement";
 
 export default function ProductTile({
   product,
@@ -21,61 +22,15 @@ export default function ProductTile({
   product: RouterOutput["product"]["getAllProducts"][number];
 }) {
   const t = useTranslations("ProductsPage");
-  const utils = trpc.useUtils();
 
   const setProductGallery = useSetAtom(productGalleryAtom);
-  const setMessage = useSetAtom(messageAtom);
-
-  const updateTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-  const [quantity, setQuantity] = useState<number>(0);
-  const [currentQuantity, setCurrentQuantity] = useState<number>(0);
-
-  const productQuantityInCart = useProductQuantityInCart(product.id);
-
-  const { mutate: changeQuantity, isPending } =
-    trpc.cart.changeCartItemQuantity.useMutation({
-      onSuccess: (data) => {
-        utils.cart.getCart.invalidate();
-        if (data) setCurrentQuantity(data.quantity);
-      },
-      onError: () => {
-        setMessage({
-          message: "ProductsPage.cart_update_error",
-          type: MessageType.ERROR,
-        });
-      },
-    });
-
-  useEffect(() => {
-    setQuantity(productQuantityInCart);
-    setCurrentQuantity(productQuantityInCart);
-  }, [productQuantityInCart]);
 
   function onProductTileClick() {
     setProductGallery(product);
   }
 
-  function updateCart(q: number) {
-    if (updateTimeoutRef.current) clearTimeout(updateTimeoutRef.current);
-    updateTimeoutRef.current = setTimeout(() => {
-      changeQuantity({
-        id: product.id,
-        quantity: q,
-      });
-    }, 750);
-  }
-
-  function onQuantityChange(action: CartAction) {
-    const newQuantity =
-      action === CartAction.ADD
-        ? quantity + 1
-        : quantity - 1 < 0
-          ? 0
-          : quantity - 1;
-    setQuantity(newQuantity);
-    updateCart(newQuantity);
-  }
+  const { onQuantityChange, currentQuantity, isPending } =
+    useProductCartManagement(product.id);
 
   return (
     <div
@@ -117,7 +72,7 @@ export default function ProductTile({
           </div>
         </div>
       </div>
-      {productQuantityInCart ? (
+      {currentQuantity ? (
         <div className="flex flex-row items-center">
           <Button
             className="rounded-tl-none bg-amber-600 hover:bg-amber-700"

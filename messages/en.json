@@ -34,6 +34,11 @@
     "cta_subtitle": "Discover our collection of handcrafted wooly accessories for your little ones",
     "cta_button": "Shop Our Collection"
   },
+  "CheckoutPage": {
+    "cart": "Cart",
+    "cart_empty": "Your cart is empty",
+    "modal_content_remove_cart_item": "Are you sure you want to remove this product from your cart?"
+  },
   "ContactPage": {
     "hero_title": "Get in Touch",
     "hero_subtitle": "We'd love to hear from you! Whether you have a question, custom order request, or just want to say hello",
@@ -160,5 +165,7 @@
     "testimonials_subtitle": "Real reviews from our happy customers",
     "testimonials_title": "What Parents Say",
     "width": "Width"
-  }
+  },
+  "close": "Close",
+  "confirm": "Confirm"
 }

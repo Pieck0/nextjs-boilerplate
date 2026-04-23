@@ -16,6 +16,7 @@ import {
   SelectTrigger,
 } from "@/components/ui/select";
 import { MenuDrawer } from "@/components/MenuDrawer";
+import Modal from "@/components/Modal";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -172,6 +173,7 @@ export default async function RootLayout({
         <TRPCProvider>
           <NextIntlClientProvider>
             <div className="min-h-screen flex flex-col relative">
+              <Modal />
               <Header />
               <MessageContainer />
               {children}
