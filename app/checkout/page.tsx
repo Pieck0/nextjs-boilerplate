@@ -6,7 +6,7 @@ export default async function Checkout() {
 
   return (
     <div className="grow px-8 py-4 bg-linear-to-br from-amber-50 to-orange-50">
-      <p className=" text-2xl font-semibold text-amber-700">{t("cart")}</p>
+      <p className="ml-2 text-2xl font-semibold text-amber-700">{t("cart")}</p>
       <CartPanel />
     </div>
   );

@@ -37,7 +37,13 @@
   "CheckoutPage": {
     "cart": "Cart",
     "cart_empty": "Your cart is empty",
-    "modal_content_remove_cart_item": "Are you sure you want to remove this product from your cart?"
+    "create_order": "Make an order",
+    "email_required": "Email is required",
+    "email_invalid_format": "Invalid email",
+    "modal_content_remove_cart_item": "Are you sure you want to remove this product from your cart?",
+    "order_created": "Order created",
+    "order_creation_error": "Order creation error",
+    "total": "Total"
   },
   "ContactPage": {
     "hero_title": "Get in Touch",

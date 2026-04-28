@@ -39,10 +39,6 @@ export const cartRouter = createTRPCRouter({
       }),
     )
     .mutation(async (opts) => {
-      // throw new TRPCError({
-      //   code: "UNAUTHORIZED",
-      //   message: "Not authenticated",
-      // });
       const { id, quantity } = opts.input;
       const session = opts.ctx.session;
       const cart =
