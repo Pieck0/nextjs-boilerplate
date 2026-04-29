@@ -1,11 +1,22 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import { NextIntlClientProvider } from "next-intl";
-import { getTranslations } from "next-intl/server";
+import { CartDrawer } from "@/components/CartDrawer";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { TRPCProvider } from "@/trpc/client";
-import { getQueryClient, trpc } from "@/trpc/server";
+import type { Metadata } from "next";
+import { NextIntlClientProvider } from "next-intl";
+import { getTranslations } from "next-intl/server";
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
+import MessageContainer from "@/components/MessageContainer";
+import { MdOutlineMenu } from "react-icons/md";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+} from "@/components/ui/select";
+import { MenuDrawer } from "@/components/MenuDrawer";
+import Modal from "@/components/Modal";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,18 +37,18 @@ async function Header() {
   const t = await getTranslations("HomePage");
 
   return (
-    <TRPCProvider>
-      <header className="bg-white shadow-sm sticky top-0 z-50">
-        <nav className="mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="shrink-0">
-              <a className="text-2xl font-bold text-amber-700" href="/">
-                Loop by Family
-              </a>
-            </div>
-            <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-8">
-                <LanguageSwitcher />
+    <header className="bg-white shadow-sm sticky top-0 z-50">
+      <nav className="mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          <div className="shrink-0">
+            <a className="text-2xl font-bold text-amber-700" href="/">
+              Loop by Family
+            </a>
+          </div>
+          <div className="md:block">
+            <div className="ml-10 flex space-x-8 items-center">
+              <LanguageSwitcher />
+              <div className="min-[1100px]:flex space-x-8 items-center hidden">
                 <a
                   href="/"
                   className="text-gray-700 hover:text-amber-600 px-4 py-2 text-base font-semibold transition-colors relative group"
@@ -63,11 +74,13 @@ async function Header() {
                   {t("contact")}
                 </a>
               </div>
+              <CartDrawer />
+              <MenuDrawer className="min-[1100px]:hidden" />
             </div>
           </div>
-        </nav>
-      </header>
-    </TRPCProvider>
+        </div>
+      </nav>
+    </header>
   );
 }
 
@@ -147,7 +160,7 @@ async function Footer() {
   );
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -157,15 +170,18 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <NextIntlClientProvider>
-          <div className="min-h-screen flex flex-col">
-            <Header />
+        <TRPCProvider>
+          <NextIntlClientProvider>
+            <div className="min-h-screen flex flex-col relative">
+              <Modal />
+              <Header />
+              <MessageContainer />
+              {children}
 
-            {children}
-
-            <Footer />
-          </div>
-        </NextIntlClientProvider>
+              <Footer />
+            </div>
+          </NextIntlClientProvider>
+        </TRPCProvider>
       </body>
     </html>
   );

@@ -9,8 +9,38 @@ generator client {
   output   = "../lib/generated/prisma"
 }
 
+enum OrderStatus {
+  PENDING
+  PAID
+  SHIPPED
+  DELIVERED
+}
+
 datasource db {
   provider = "postgresql"
+}
+
+model session {
+  id      String   @id @default(cuid())
+  expires DateTime
+  cart    cart?
+}
+
+model cart {
+  id        Int         @id @default(autoincrement())
+  items     cart_item[]
+  sessionId String      @unique
+  session   session     @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+}
+
+model cart_item {
+  cart      cart    @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  cartId    Int
+  productId Int
+  product   product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  quantity  Int
+
+  @@id([cartId, productId])
 }
 
 model product {
@@ -25,6 +55,8 @@ model product {
   width        Float?
   height       Float?
   diameter     Float?
+  cart_items   cart_item[]
+  order_items  order_item[]
 }
 
 model product_translation {
@@ -55,4 +87,24 @@ model product_category_translation {
   category     product_category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   languageCode String
   name         String
+}
+
+model order {
+  id         String       @id @default(uuid())
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+  deletedAt  DateTime?
+  status     OrderStatus
+  orderItems order_item[]
+  email      String
+}
+
+model order_item {
+  id        Int     @id @default(autoincrement())
+  orderId   String
+  order     order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId Int
+  product   product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  quantity  Int
+  price     Int
 }

@@ -34,6 +34,17 @@
     "cta_subtitle": "Discover our collection of handcrafted wooly accessories for your little ones",
     "cta_button": "Shop Our Collection"
   },
+  "CheckoutPage": {
+    "cart": "Cart",
+    "cart_empty": "Your cart is empty",
+    "create_order": "Make an order",
+    "email_required": "Email is required",
+    "email_invalid_format": "Invalid email",
+    "modal_content_remove_cart_item": "Are you sure you want to remove this product from your cart?",
+    "order_created": "Order created",
+    "order_creation_error": "Order creation error",
+    "total": "Total"
+  },
   "ContactPage": {
     "hero_title": "Get in Touch",
     "hero_subtitle": "We'd love to hear from you! Whether you have a question, custom order request, or just want to say hello",
@@ -79,6 +90,8 @@
   },
   "HomePage": {
     "about_us": "About Us",
+    "cart_checkout": "Checkout",
+    "cart_empty": "Your cart is empty",
     "contact": "Contact",
     "follow_us": "Follow us",
     "footer_description": "Handmade accessories for little ones, crafted with love and care",
@@ -105,6 +118,7 @@
   },
   "ProductsPage": {
     "add_to_cart": "Add to Cart",
+    "cart_update_error": "Cart update error",
     "category_blankets": "Blankets",
     "category_clothing": "Clothing",
     "category_footwear": "Booties & Socks",
@@ -157,5 +171,7 @@
     "testimonials_subtitle": "Real reviews from our happy customers",
     "testimonials_title": "What Parents Say",
     "width": "Width"
-  }
+  },
+  "close": "Close",
+  "confirm": "Confirm"
 }

@@ -33,6 +33,17 @@
     "cta_subtitle": "Odkryj naszą kolekcję ręcznie robionych wełnianych akcesoriów dla Twoich maluchów",
     "cta_button": "Zobacz Kolekcję"
   },
+  "CheckoutPage": {
+    "cart": "Koszyk",
+    "cart_empty": "Twój koszyk jest pusty",
+    "create_order": "Złóż zamówienie",
+    "email_required": "Adres email jest wymagany",
+    "email_invalid_format": "Adres email jest nieprawidłowy",
+    "modal_content_remove_cart_item": "Czy na pewno chcesz usunąć ten produkt z koszyka?",
+    "order_created": "Zamówienie zostało utworzone",
+    "order_creation_error": "Wystąpił błąd podczas tworzenia zamówienia",
+    "total": "Łącznie"
+  },
   "ContactPage": {
     "hero_title": "Skontaktuj się z nami",
     "hero_subtitle": "Chętnie się z Tobą skontaktujemy! Czy masz pytanie, chcesz zamówić coś na specjalne zamówienie, czy po prostu chcesz się przywitać",
@@ -78,6 +89,8 @@
   },
   "HomePage": {
     "about_us": "O nas",
+    "cart_checkout": "Zapłać",
+    "cart_empty": "Twój koszyk jest pusty",
     "contact": "Kontakt",
     "follow_us": "Obserwuj nas",
     "footer_description": "Ręcznie tworzone akcesoria dla maluchów, wykonywane z miłością i troską",
@@ -104,6 +117,7 @@
   },
   "ProductsPage": {
     "add_to_cart": "Dodaj do Koszyka",
+    "cart_update_error": "Błąd aktualizacji koszyka",
     "category_blankets": "Kocyki",
     "category_clothing": "Ubrania",
     "category_footwear": "Buciki i Skarpetki",
@@ -156,5 +170,7 @@
     "testimonials_subtitle": "Prawdziwe opinie naszych zadowolonych klientów",
     "testimonials_title": "Co Mówią Rodzice",
     "width": "Szerokość"
-  }
+  },
+  "close": "Zamknij",
+  "confirm": "Potwierdź"
 }
