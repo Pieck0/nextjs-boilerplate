@@ -97,6 +97,7 @@
     "footer_description": "Handmade accessories for little ones, crafted with love and care",
     "footer_rights": "All rights reserved. Created with ❤️ for little ones.",
     "links": "Links",
+    "log_in": "Log In",
     "main_page": "Main Page",
     "phone": "Phone",
     "products": "Products",
@@ -115,6 +116,15 @@
       "text": "Wolly Baby is a small Polish company created out of a passion for handicrafts. For many years, we have been creating handmade products for babies and we enjoy every piece of positive feedback.",
       "button_text": "About Us"
     }
+  },
+  "LoginPage": {
+    "email": "Email",
+    "password": "Password",
+    "log_in": "Log In",
+    "remember_me": "Remember Me",
+    "forgot_password": "Forgot Password",
+    "no_account": "Don't have an account?",
+    "sign_up": "Sign Up"
   },
   "ProductsPage": {
     "add_to_cart": "Add to Cart",
@@ -172,6 +182,22 @@
     "testimonials_title": "What Parents Say",
     "width": "Width"
   },
+  "RegisterPage": {
+    "already_have_account": "Already have an account?",
+    "email": "Email",
+    "email_invalid_format": "Invalid email format",
+    "repeat_password_custom": "Passwords do not match",
+    "log_in": "Log In",
+    "password": "Password",
+    "password_too_small": "Password is too short",
+    "register": "Register",
+    "repeat_password": "Repeat Password"
+  },
   "close": "Close",
-  "confirm": "Confirm"
+  "confirm": "Confirm",
+  "invalid_credentials": "Invalid credentials",
+  "register_success": "Account created success",
+  "register_error": "Account creation error",
+  "log_in_success": "Log in success",
+  "log_in_error": "Log in error"
 }

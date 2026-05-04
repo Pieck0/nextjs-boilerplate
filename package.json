@@ -16,6 +16,7 @@
     "@trpc/client": "^11.11.0",
     "@trpc/react-query": "^11.11.0",
     "@trpc/server": "^11.11.0",
+    "bcrypt": "^6.0.0",
     "big.js": "^7.0.1",
     "class-variance-authority": "^0.7.1",
     "client-only": "^0.0.1",
@@ -42,6 +43,7 @@
   "devDependencies": {
     "@hookform/resolvers": "^5.2.2",
     "@tailwindcss/postcss": "^4",
+    "@types/bcrypt": "^6.0.0",
     "@types/big.js": "^6.2.2",
     "@types/node": "^20",
     "@types/pg": "^8.18.0",

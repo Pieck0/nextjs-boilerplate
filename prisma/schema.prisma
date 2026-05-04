@@ -20,10 +20,23 @@ datasource db {
   provider = "postgresql"
 }
 
+// TODO: Make sure that cart is taken from user if user is logged in
+model user {
+  id             String    @id @default(uuid())
+  email          String    @unique
+  password       String
+  sessions       session[]
+  cartId         Int?      @unique
+  cart           cart?
+  email_verified Boolean   @default(false)
+}
+
 model session {
   id      String   @id @default(cuid())
   expires DateTime
   cart    cart?
+  userId  String?
+  user    user?    @relation(fields: [userId], references: [id], onDelete: SetNull)
 }
 
 model cart {
@@ -31,6 +44,8 @@ model cart {
   items     cart_item[]
   sessionId String      @unique
   session   session     @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  userId    String?     @unique
+  user      user?       @relation(fields: [userId], references: [id], onDelete: SetNull)
 }
 
 model cart_item {

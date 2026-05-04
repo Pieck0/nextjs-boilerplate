@@ -96,6 +96,7 @@
     "footer_description": "Ręcznie tworzone akcesoria dla maluchów, wykonywane z miłością i troską",
     "footer_rights": "Wszystkie prawa zastrzeżone. Tworzone z ❤️ dla maluszków.",
     "links": "Linki",
+    "log_in": "Zaloguj się",
     "main_page": "Strona Główna",
     "phone": "Telefon",
     "products": "Produkty",
@@ -114,6 +115,15 @@
       "text": "Wolly Baby to niewielka, polska firma stworzona z pasji do rękodzieła. Od wielu lat zajmujemy się tworzeniem ręcznie robionych produktów dla maluszków i cieszymy się każdym pozytywnym feedbackiem.",
       "button_text": "O nas"
     }
+  },
+  "LoginPage": {
+    "email": "Adres email",
+    "password": "Hasło",
+    "log_in": "Zaloguj się",
+    "remember_me": "Zapamiętaj mnie",
+    "forgot_password": "Zapomniałem hasła",
+    "no_account": "Nie masz konta?",
+    "sign_up": "Zarejestruj się"
   },
   "ProductsPage": {
     "add_to_cart": "Dodaj do Koszyka",
@@ -171,6 +181,22 @@
     "testimonials_title": "Co Mówią Rodzice",
     "width": "Szerokość"
   },
+  "RegisterPage": {
+    "already_have_account": "Masz juz konto?",
+    "email": "Adres email",
+    "email_invalid_format": "Adres email jest nieprawidłowy",
+    "repeat_password_custom": "Hasła nie są jednakowe",
+    "log_in": "Zaloguj się",
+    "password": "Hasło",
+    "password_too_small": "Hasło jest za krótkie",
+    "register": "Zarejestruj się",
+    "repeat_password": "Powtórz hasło"
+  },
   "close": "Zamknij",
-  "confirm": "Potwierdź"
+  "confirm": "Potwierdź",
+  "invalid_credentials": "Nieprawidłowe dane logowania",
+  "register_success": "Konto zostało utworzone",
+  "register_error": "Wystąpił błąd podczas tworzenia konta",
+  "log_in_success": "Zalogowano",
+  "log_in_error": "Wystąpił błąd podczas logowania"
 }

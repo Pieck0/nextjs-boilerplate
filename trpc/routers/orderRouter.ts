@@ -1,9 +1,8 @@
 import { OrderStatus } from "@/lib/generated/prisma/enums";
 import prisma from "@/lib/prisma";
 import { TRPCError } from "@trpc/server";
-import { z } from "zod";
 import { createTRPCRouter, sessionProcedure } from "../init";
-import { createOrderSchema } from "@/lib/trpcInputs/create-order";
+import { createOrderSchema } from "@/lib/trpcInputs/create-order-schema";
 
 export const orderRouter = createTRPCRouter({
   createOrder: sessionProcedure

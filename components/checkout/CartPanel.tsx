@@ -9,11 +9,12 @@ import { Button } from "../ui/button";
 import { Controller, useForm } from "react-hook-form";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createOrderSchema } from "@/lib/trpcInputs/create-order";
+import { createOrderSchema } from "@/lib/trpcInputs/create-order-schema";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useSetAtom } from "jotai";
 import { messageAtom } from "@/lib/atoms/message.atom";
 import { MessageType } from "../MessageContainer";
+import Input from "../ui/input";
 
 export default function CartPanel() {
   const utils = trpc.useUtils();
@@ -93,26 +94,12 @@ export default function CartPanel() {
             name="email"
             control={form.control}
             render={({ field, fieldState }) => (
-              <>
-                <div className="relative flex">
-                  <input
-                    {...field}
-                    type="text"
-                    placeholder="f"
-                    className="peer bg-white focus:outline-none text-lg placeholder:text-transparent border-b px-1 border-amber-600 w-full"
-                  />
-                  <p className="transition-all text-slate-400 duration-300 ease-in-out absolute pl-1 peer-focus:text-sm not-peer-placeholder-shown:text-sm peer-focus:-translate-y-4 not-peer-placeholder-shown:-translate-y-4 peer-focus:text-amber-700 not-peer-placeholder-shown:text-amber-700">
-                    Email
-                  </p>
-                  <p
-                    className={`text-red-600 absolute translate-y-7 pl-1 text-sm`}
-                  >
-                    {fieldState.error
-                      ? t(`email_${fieldState.error.type}`)
-                      : ""}
-                  </p>
-                </div>
-              </>
+              <Input
+                inputProps={field}
+                errorMessage={
+                  fieldState.error && t(`email_${fieldState.error?.type}`)
+                }
+              />
             )}
           />
         </div>
