@@ -14,9 +14,9 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { useSetAtom } from "jotai";
 import { messageAtom } from "@/lib/atoms/message.atom";
 import { MessageType } from "../MessageContainer";
-import Input from "../ui/input";
 import { showModalAtom } from "@/lib/atoms/show-modal";
 import { ModalType } from "@/lib/enums/ModalType.enum";
+import Input from "../ui/input";
 
 export default function CartPanel() {
   const utils = trpc.useUtils();
