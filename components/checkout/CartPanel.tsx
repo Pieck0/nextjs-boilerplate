@@ -15,6 +15,8 @@ import { useSetAtom } from "jotai";
 import { messageAtom } from "@/lib/atoms/message.atom";
 import { MessageType } from "../MessageContainer";
 import Input from "../ui/input";
+import { showModalAtom } from "@/lib/atoms/show-modal";
+import { ModalType } from "@/lib/enums/ModalType.enum";
 
 export default function CartPanel() {
   const utils = trpc.useUtils();
@@ -22,35 +24,40 @@ export default function CartPanel() {
   const t = useTranslations("CheckoutPage");
 
   const setMessage = useSetAtom(messageAtom);
+  const setShowModal = useSetAtom(showModalAtom);
 
-  const form = useForm<z.infer<typeof createOrderSchema>>({
-    defaultValues: {
-      email: "",
-    },
-    resolver: zodResolver(createOrderSchema),
-  });
+  // const form = useForm<z.infer<typeof createOrderSchema>>({
+  //   defaultValues: {
+  //     email: "",
+  //   },
+  //   resolver: zodResolver(createOrderSchema),
+  // });
 
-  const { mutate: createOrder, isPending } = trpc.order.createOrder.useMutation(
-    {
-      onSuccess: () => {
-        form.reset();
-        utils.cart.getCart.invalidate();
-        setMessage({
-          message: "CheckoutPage.order_created",
-          type: MessageType.SUCCESS,
-        });
-      },
-      onError: () => {
-        setMessage({
-          message: "CheckoutPage.order_creation_error",
-          type: MessageType.ERROR,
-        });
-      },
-    },
-  );
+  // const { mutate: createOrder, isPending } = trpc.order.createOrder.useMutation(
+  //   {
+  //     onSuccess: () => {
+  //       form.reset();
+  //       utils.cart.getCart.invalidate();
+  //       setMessage({
+  //         message: "CheckoutPage.order_created",
+  //         type: MessageType.SUCCESS,
+  //       });
+  //     },
+  //     onError: () => {
+  //       setMessage({
+  //         message: "CheckoutPage.order_creation_error",
+  //         type: MessageType.ERROR,
+  //       });
+  //     },
+  //   },
+  // );
 
-  function onSubmit(data: z.infer<typeof createOrderSchema>) {
-    createOrder(data);
+  function onSubmit() {
+    // data: z.infer<typeof createOrderSchema>
+    // createOrder(data);
+    setShowModal({
+      type: ModalType.SHOP_IN_PROGRESS,
+    });
   }
 
   return (
@@ -73,7 +80,6 @@ export default function CartPanel() {
       </div>
       <form
         action=""
-        onSubmit={form.handleSubmit(onSubmit)}
         className="bg-white rounded-lg p-8 mt-4 flex-1 flex flex-col justify-between h-56"
       >
         <div className="flex justify-between w-full">
@@ -89,7 +95,7 @@ export default function CartPanel() {
             PLN
           </p>
         </div>
-        <div>
+        {/* <div>
           <Controller
             name="email"
             control={form.control}
@@ -102,13 +108,9 @@ export default function CartPanel() {
               />
             )}
           />
-        </div>
-        <Button type="submit">
-          {isPending ? (
-            <ClipLoader size={24} color="#ffba00" />
-          ) : (
-            t("create_order")
-          )}
+        </div> */}
+        <Button type="button" onClick={onSubmit}>
+          {t("create_order")}
         </Button>
       </form>
     </div>

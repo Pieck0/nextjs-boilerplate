@@ -42,6 +42,9 @@
     "modal_content_remove_cart_item": "Czy na pewno chcesz usunąć ten produkt z koszyka?",
     "order_created": "Zamówienie zostało utworzone",
     "order_creation_error": "Wystąpił błąd podczas tworzenia zamówienia",
+    "shop_in_progress": "Sklep jest w trakcie budowy.",
+    "shop_in_progress_text": "By złożyć zamówienie proszę skontaktować się email",
+    "or_phone": " lub numer telefonu",
     "total": "Łącznie"
   },
   "ContactPage": {
