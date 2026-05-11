@@ -43,6 +43,7 @@
     "modal_content_remove_cart_item": "Are you sure you want to remove this product from your cart?",
     "order_created": "Order created",
     "order_creation_error": "Order creation error",
+    "shop_in_progress_text": "Shop in progress. To make an order, please contact us by {email} or {phone}.",
     "total": "Total"
   },
   "ContactPage": {
