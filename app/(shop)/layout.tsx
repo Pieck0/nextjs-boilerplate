@@ -44,7 +44,7 @@ async function Header() {
                   {t("contact")}
                 </a>
                 <a
-                  href="/log_in"
+                  href="/log-in"
                   className="text-gray-700 hover:text-amber-600 px-4 py-2 text-base font-semibold transition-colors relative group"
                 >
                   {t("log_in")}

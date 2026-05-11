@@ -119,6 +119,7 @@
   "LoginPage": {
     "email": "Adres email",
     "password": "Hasło",
+    "password_too_small": "Hasło jest za krótkie",
     "log_in": "Zaloguj się",
     "remember_me": "Zapamiętaj mnie",
     "forgot_password": "Zapomniałem hasła",
