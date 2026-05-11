@@ -129,8 +129,14 @@ async function Footer() {
           <div>
             <h4 className="font-semibold mb-4">{t("contact")}</h4>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li>Email: hello@Loop by Family.com</li>
-              <li>{t("phone")}: +1 (555) 123-4567</li>
+              {process.env.NEXT_PUBLIC_EMAIL && (
+                <li>Email: {process.env.NEXT_PUBLIC_EMAIL}</li>
+              )}
+              {process.env.NEXT_PUBLIC_PHONE && (
+                <li>
+                  {t("phone")}: {process.env.NEXT_PUBLIC_PHONE}
+                </li>
+              )}
             </ul>
           </div>
           <div>
