@@ -80,14 +80,16 @@
     "hours_closed": "Closed",
     "faq_title": "Frequently Asked Questions",
     "faq_subtitle": "Quick answers to common questions",
-    "faq_q1": "How long does shipping take?",
-    "faq_a1": "Standard shipping within Poland typically takes 2-4 business days. International shipping varies by destination, usually 5-10 business days. Express shipping options are available at checkout.",
+    "faq_q1": "How do I place an order in the store?",
+    "faq_a1": "To place an order, add your selected products to the cart, then contact us by email or phone. Based on the submitted product list, we will confirm availability, discuss the order details, and provide further information about the fulfillment process.",
     "faq_q2": "Do you accept custom orders?",
-    "faq_a2": "Absolutely! We love creating custom pieces. Please contact us with your ideas, preferred colors, and size requirements. We'll work with you to create something special for your little one.",
-    "faq_q3": "What is your return policy?",
-    "faq_a3": "We accept returns within 30 days of purchase for unworn, unwashed items in original packaging. Custom orders are non-returnable unless there's a defect. Please contact us to initiate a return.",
-    "faq_q4": "How do I care for wooly products?",
-    "faq_a4": "Hand wash in cold water with mild wool detergent. Gently squeeze out excess water (don't wring), reshape, and lay flat to dry. Never use a dryer. Store in a cool, dry place during warmer months."
+    "faq_a2": "Of course! We love creating custom products. Contact us with your ideas, preferred colors, and size requirements. We will work with you to create something special for your little one.",
+    "faq_q3": "What contact methods are available for placing an order?",
+    "faq_a3": "We accept orders via email and phone. You can find our contact details in the “Contact” section on our website.",
+    "faq_q4": "How should I care for wool products?",
+    "faq_a4": "Hand wash in cold water using a gentle wool detergent. Gently squeeze out excess water (do not wring), reshape, and lay flat to dry. Never use a dryer. Store in a cool, dry place during warmer months.",
+    "faq_q5": "How long does it take to complete an order for handmade wool products?",
+    "faq_a5": "The fulfillment time depends on the type of product and the current number of orders. We provide the exact timeframe when confirming your order, but we always strive to complete orders as quickly as possible."
   },
   "HomePage": {
     "about_us": "About Us",

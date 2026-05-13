@@ -81,14 +81,16 @@
     "hours_closed": "Nieczynne",
     "faq_title": "Często Zadawane Pytania",
     "faq_subtitle": "Szybkie odpowiedzi na częste pytania",
-    "faq_q1": "Ile czasu zajmuje dostawa?",
-    "faq_a1": "Standardowa dostawa w Polsce zazwyczaj trwa 2-4 dni robocze. Dostawa międzynarodowa różni się w zależności od miejsca docelowego, zwykle 5-10 dni roboczych. Opcje ekspresowej dostawy są dostępne przy kasie.",
+    "faq_q1": "Jak złożyć zamówienie w sklepie?",
+    "faq_a1": "Aby złożyć zamówienie, dodaj wybrane produkty do koszyka, a następnie skontaktuj się z nami mailowo lub telefonicznie. Na podstawie przesłanej listy produktów potwierdzimy dostępność, ustalimy szczegóły zamówienia oraz przekażemy dalsze informacje dotyczące realizacji.",
     "faq_q2": "Czy przyjmujecie zamówienia niestandardowe?",
     "faq_a2": "Oczywiście! Uwielbiamy tworzyć niestandardowe produkty. Skontaktuj się z nami ze swoimi pomysłami, preferowanymi kolorami i wymaganiami dotyczącymi rozmiaru. Będziemy pracować z Tobą, aby stworzyć coś wyjątkowego dla Twojego malucha.",
-    "faq_q3": "Jaka jest Wasza polityka zwrotów?",
-    "faq_a3": "Przyjmujemy zwroty w ciągu 30 dni od zakupu dla nieużywanych, niepranych przedmiotów w oryginalnym opakowaniu. Zamówienia niestandardowe nie podlegają zwrotowi, chyba że jest wada. Skontaktuj się z nami, aby rozpocząć proces zwrotu.",
+    "faq_q3": "Jakie są dostępne formy kontaktu przy składaniu zamówienia?",
+    "faq_a3": "Zamówienia przyjmujemy mailowo oraz telefonicznie. Dane kontaktowe znajdziesz w zakładce „Kontakt” na naszej stronie.",
     "faq_q4": "Jak dbać o produkty wełniane?",
-    "faq_a4": "Prać ręcznie w zimnej wodzie z łagodnym detergentem do wełny. Delikatnie wycisnąć nadmiar wody (nie wykręcać), przywrócić kształt i położyć płasko do wyschnięcia. Nigdy nie używać suszarki. Przechowywać w chłodnym, suchym miejscu w cieplejszych miesiącach."
+    "faq_a4": "Prać ręcznie w zimnej wodzie z łagodnym detergentem do wełny. Delikatnie wycisnąć nadmiar wody (nie wykręcać), przywrócić kształt i położyć płasko do wyschnięcia. Nigdy nie używać suszarki. Przechowywać w chłodnym, suchym miejscu w cieplejszych miesiącach.",
+    "faq_q5": "Jak długo trwa realizacja zamówienia na ręcznie robione wyroby z wełny?",
+    "faq_a5": "Czas realizacji zależy od rodzaju produktu oraz aktualnej liczby zamówień. Dokładny termin podajemy podczas potwierdzania zamówienia, jednak zawsze staramy się realizować je jak najszybciej."
   },
   "HomePage": {
     "about_us": "O nas",
