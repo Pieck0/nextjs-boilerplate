@@ -22,7 +22,6 @@ export default async function ContactPage() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-1">
-
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-6">
                 {t("info_title")}
@@ -132,22 +131,11 @@ export default async function ContactPage() {
 
           <div className="space-y-6">
             {/* FAQ 1 */}
-            <FaqCard
-              question={t("faq_q1")}
-              answer={t("faq_a1")}
-            />
-            <FaqCard
-              question={t("faq_q2")}
-              answer={t("faq_a2")}
-            />
-            <FaqCard
-              question={t("faq_q3")}
-              answer={t("faq_a3")}
-            />
-            <FaqCard
-              question={t("faq_q4")}
-              answer={t("faq_a4")}
-            />
+            <FaqCard question={t("faq_q1")} answer={t("faq_a1")} />
+            <FaqCard question={t("faq_q3")} answer={t("faq_a3")} />
+            <FaqCard question={t("faq_q5")} answer={t("faq_a5")} />
+            <FaqCard question={t("faq_q2")} answer={t("faq_a2")} />
+            <FaqCard question={t("faq_q4")} answer={t("faq_a4")} />
           </div>
         </div>
       </section>
