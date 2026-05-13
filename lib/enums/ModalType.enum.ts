@@ -1,0 +1,4 @@
+export enum ModalType {
+  REMOVE_FROM_CART = "REMOVE_FROM_CART",
+  SHOP_IN_PROGRESS = "SHOP_IN_PROGRESS",
+}
