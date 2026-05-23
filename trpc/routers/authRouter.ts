@@ -5,6 +5,7 @@ import bcrypt from "bcrypt";
 import { loginSchema } from "@/lib/trpcInputs/log-in-schema";
 import { cookies } from "next/headers";
 import { TRPCError } from "@trpc/server";
+import { mergeSessionCartIntoUserCart } from "../services/cartService";
 
 const fakeHash = "8ZEM1nGvHkQgKRLTlILHeM5y5j7iG7zuEltPQkuYl1g=";
 
@@ -65,20 +66,20 @@ export const authRouter = createTRPCRouter({
 
     const sessionId = _cookies.get("session")?.value;
 
-    let session = undefined;
-    if (sessionId)
-      session = await prisma.session.findUnique({
-        where: {
-          id: sessionId,
-        },
-        include: {
-          cart: {
-            include: {
-              items: true,
+    let session = sessionId
+      ? await prisma.session.findUnique({
+          where: {
+            id: sessionId,
+          },
+          include: {
+            cart: {
+              include: {
+                items: true,
+              },
             },
           },
-        },
-      });
+        })
+      : undefined;
 
     const newExpires = new Date(Date.now() + 1000 * 60 * 60 * 24);
 
@@ -131,35 +132,10 @@ export const authRouter = createTRPCRouter({
         },
       });
 
-      if (session.cart?.id) {
-        await prisma.cart.upsert({
-          where: {
-            id: userExists.cartId ?? undefined,
-          },
-          update: {
-            sessionId: session.id,
-            items: {
-              connect: session.cart.items.map((item) => ({
-                cartId_productId: {
-                  cartId: userExists.cartId!,
-                  productId: item.productId,
-                },
-              })),
-            },
-          },
-          create: {
-            sessionId: session.id,
-            items: {
-              connect: session.cart.items.map((item) => ({
-                cartId_productId: {
-                  cartId: userExists.cartId!,
-                  productId: item.productId,
-                },
-              })),
-            },
-          },
-        });
-      }
+      await mergeSessionCartIntoUserCart({
+        sessionId: session.id,
+        userId: userExists.id,
+      });
 
       _cookies.set("session", session.id, {
         httpOnly: true,
