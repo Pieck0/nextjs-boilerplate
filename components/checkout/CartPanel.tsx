@@ -60,7 +60,7 @@ export default function CartPanel() {
   }
 
   return (
-    <div className="flex gap-4">
+    <div className="flex flex-col min-[1100px]:flex-row gap-4">
       <div className="bg-white rounded-lg py-4 mt-4 flex-2">
         {!cart.data?.items.length ? (
           <div className="flex flex-col items-center self-center">

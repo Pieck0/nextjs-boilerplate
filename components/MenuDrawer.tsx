@@ -5,6 +5,7 @@ import { useAtom } from "jotai";
 import { useTranslations } from "next-intl";
 import { MouseEventHandler } from "react";
 import { MdOutlineMenu } from "react-icons/md";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 export const MenuDrawer = ({ className }: { className?: string }) => {
   const t = useTranslations("HomePage");
@@ -60,6 +61,9 @@ export const MenuDrawer = ({ className }: { className?: string }) => {
             >
               {t("contact")}
             </a>
+            <div className="min-[1100px]:hidden">
+              <LanguageSwitcher />
+            </div>
           </div>
         </div>
       )}

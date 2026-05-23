@@ -33,7 +33,7 @@ export default async function ProductsPage() {
       {/* Products Grid */}
       <section className="py-16 bg-white">
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
             {products.map((product, idx) => (
               <ProductTile product={product} key={`product-tile-${idx}`} />
             ))}

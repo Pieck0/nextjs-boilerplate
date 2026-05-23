@@ -32,7 +32,7 @@ export default function Modal() {
         )}
         <div className="flex justify-evenly">
           <Button
-            className={`w-1/4 ${!showModal?.onSuccess ? "hidden" : ""}`}
+            className={`w-2/5 ${!showModal?.onSuccess ? "hidden" : ""}`}
             onClick={() => {
               showModal?.onSuccess?.();
               closeModal();
@@ -40,7 +40,7 @@ export default function Modal() {
           >
             {t("confirm")}
           </Button>
-          <Button className="w-1/4" onClick={closeModal}>
+          <Button className="w-2/5" onClick={closeModal}>
             {t("close")}
           </Button>
         </div>
@@ -59,9 +59,9 @@ function ShopInProgressContent() {
   const t = useTranslations("CheckoutPage");
 
   return (
-    <div>
+    <div className="flex flex-col w-full">
       <p className="text-lg">{t("shop_in_progress")}</p>
-      <p className="flex text-lg">
+      <p className="flex flex-wrap text-lg">
         {t("shop_in_progress_text")}
         &nbsp;
         <a

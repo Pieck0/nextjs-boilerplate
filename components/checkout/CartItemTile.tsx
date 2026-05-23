@@ -19,13 +19,13 @@ export default function CartItemTile({
     useProductCartManagement(cartItem.product.id);
 
   return (
-    <div className="flex gap-4 px-8 py-4 not-last:border-b">
+    <div className="flex flex-col min-[1100px]:flex-row gap-4 px-8 py-4 not-last:border-b">
       <Image
         src={`/products/${cartItem.product.image}`}
         alt="Loop by Family story"
         width={600}
         height={600}
-        className="object-cover w-1/4 aspect-square rounded-xl"
+        className="object-cover w-full min-[1100]:w-1/4 aspect-square rounded-xl"
         loading="eager"
       />
       <div className="flex flex-col justify-between flex-1">
