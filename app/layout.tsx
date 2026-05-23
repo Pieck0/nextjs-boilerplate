@@ -7,14 +7,6 @@ import { getTranslations } from "next-intl/server";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import MessageContainer from "@/components/MessageContainer";
-import { MdOutlineMenu } from "react-icons/md";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-} from "@/components/ui/select";
 import { MenuDrawer } from "@/components/MenuDrawer";
 import Modal from "@/components/Modal";
 
@@ -47,7 +39,9 @@ async function Header() {
           </div>
           <div className="md:block">
             <div className="ml-10 flex space-x-8 items-center">
-              <LanguageSwitcher />
+              <div className="max-[1100px]:hidden">
+                <LanguageSwitcher />
+              </div>
               <div className="min-[1100px]:flex space-x-8 items-center hidden">
                 <a
                   href="/"

@@ -10,7 +10,6 @@ import { useEffect, useRef, useState } from "react";
 import { useProductQuantityInCart } from "@/lib/hooks/useProductQuantityInCart";
 import { MessageType } from "./MessageContainer";
 import { ClipLoader } from "react-spinners";
-import { useTranslations } from "next-intl";
 import { trpc } from "@/trpc/client";
 import Image from "next/image";
 import Big from "big.js";
@@ -20,7 +19,6 @@ export default function CartProductTile({
 }: {
   cartItem: NonNullable<RouterOutput["cart"]["getCart"]>["items"][number];
 }) {
-  const t = useTranslations("ProductsPage");
   const utils = trpc.useUtils();
 
   const setMessage = useSetAtom(messageAtom);
@@ -73,16 +71,16 @@ export default function CartProductTile({
   }
 
   return (
-    <div className="flex border border-rose-400 bg-white gap-2 mx-8 rounded-2xl shadow-md hover:bg-rose-100 hover:shadow-xl transition-all duration-300 overflow-hidden">
+    <div className="flex flex-col min-[1100px]:flex-row border border-rose-400 bg-white min-[1100px]:gap-2 mx-8 rounded-2xl shadow-md hover:bg-rose-100 hover:shadow-xl transition-all duration-300 overflow-hidden">
       <Image
         src={`/products/${cartItem.product.image}`}
         alt="Loop by Family story"
         width={600}
         height={600}
-        className="object-cover w-1/4 aspect-square"
+        className="object-cover w-full min-[1100px]:w-1/4 aspect-square"
         loading="eager"
       />
-      <div className="w-3/4 flex">
+      <div className=" w-full min-[1100px]:w-3/4 flex">
         <div className="flex-1 flex flex-wrap justify-between mx-1">
           <p className="text-lg font-bold text-gray-900 mb-2 transition-colors">
             {`${cartItem.product.translations[0]?.name ?? ""}`}
@@ -97,7 +95,7 @@ export default function CartProductTile({
           ) : (
             <>
               <Button
-                className="rounded-l-none rounded-br-none flex-1"
+                className="rounded-none flex-1"
                 onClick={() => onQuantityChange(CartAction.ADD)}
               >
                 <FaPlus />

@@ -1,20 +1,15 @@
 "use client";
 
-import { messageAtom } from "@/lib/atoms/message.atom";
 import { productGalleryAtom } from "@/lib/atoms/product-gallery.atom";
 import { CartAction } from "@/lib/enums/CartAction.enum";
-import { useProductQuantityInCart } from "@/lib/hooks/useProductQuantityInCart";
+import { useProductCartManagement } from "@/lib/hooks/useProductCartManagement";
 import { RouterOutput } from "@/lib/trpcInferTypes";
-import { trpc } from "@/trpc/client";
 import { useSetAtom } from "jotai";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import { ClipLoader } from "react-spinners";
-import { MessageType } from "../MessageContainer";
 import { Button } from "../ui/button";
-import { useProductCartManagement } from "@/lib/hooks/useProductCartManagement";
 
 export default function ProductTile({
   product,
@@ -62,7 +57,7 @@ export default function ProductTile({
           <h3 className="text-2xl font-bold text-gray-900 mb-2 transition-colors">
             {product.name ?? ""}
           </h3>
-          <p className="text-gray-600 mb-2 line-clamp-2">
+          <p className="hidden min-[1100px]:line-clamp-2 text-gray-600 mb-2">
             {product.description ?? ""}
           </p>
           <div className="flex items-center">

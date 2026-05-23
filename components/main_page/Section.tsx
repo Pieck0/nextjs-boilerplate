@@ -20,27 +20,29 @@ export default function MainPageSection({
   return (
     <section
       id="home"
-      className={`min-h-screen flex items-center bg-linear-to-br bg-slate-50 ${sectionClassName ?? ""}`}
+      className={`min-h-150 flex items-center bg-linear-to-br bg-slate-50 ${sectionClassName ?? ""}`}
     >
-      <div className="mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div className="mx-auto py-4 px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className={imgSide === "RIGHT" ? "order-last" : "order-first"}>
+          <div
+            className={`
+              order-last
+              ${imgSide === "RIGHT" ? "md:order-first" : "md:order-last"}`}
+          >
             <div
               className={`bg-linear-to-br ${imgClassName ?? ""} rounded-3xl h-96 flex items-center justify-center shadow-2xl`}
             >
               <div className="text-center text-white">
-                {
-                  bannerName&& (
-                <Image
-                  src={`/banners/${bannerName}`}
-                  alt="Cozy handcrafted wooly accessories for children"
-                  width={800}
-                  height={600}
-                  className="w-full h-96 object-cover"
-                  priority
-                />
-                  )
-                }
+                {bannerName && (
+                  <Image
+                    src={`/banners/${bannerName}`}
+                    alt="Cozy handcrafted wooly accessories for children"
+                    width={800}
+                    height={600}
+                    className="w-full h-96 object-cover"
+                    priority
+                  />
+                )}
               </div>
             </div>
           </div>

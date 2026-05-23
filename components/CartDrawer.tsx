@@ -23,11 +23,11 @@ export const CartDrawer = () => {
       <DrawerTrigger asChild>
         <div className="relative group">
           <IoCart size={28} className="group-hover:text-amber-600" />
-          {cart?.items.length && (
+          {cart?.items.length ? (
             <div className="absolute translate-x-1/2 translate-y-1/2 top-0 right-0 bg-amber-600 text-white rounded-full w-6 h-6 flex items-center justify-center">
               {cart?.items.length}
             </div>
-          )}
+          ) : null}
         </div>
       </DrawerTrigger>
       <DrawerContent className="z-40 mt-16 bg-linear-to-br from-rose-50 to-pink-50 border-l-2 border-rose-400">

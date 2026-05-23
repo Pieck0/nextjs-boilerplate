@@ -54,7 +54,7 @@ export default async function ContactPage() {
                       href="mailto:hello@loopbyfamily.com"
                       className="text-amber-600 hover:text-amber-700"
                     >
-                      hello@loopbyfamily.com
+                      {process.env.NEXT_PUBLIC_EMAIL}
                     </a>
                   </div>
                 </div>
@@ -84,7 +84,7 @@ export default async function ContactPage() {
                       href="tel:+48123456789"
                       className="text-amber-600 hover:text-amber-700"
                     >
-                      +48 123 456 789
+                      {process.env.NEXT_PUBLIC_PHONE}
                     </a>
                   </div>
                 </div>
