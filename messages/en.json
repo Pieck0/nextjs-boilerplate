@@ -101,6 +101,7 @@
     "footer_rights": "All rights reserved. Created with ❤️ for little ones.",
     "links": "Links",
     "log_in": "Log In",
+    "log_out": "Log Out",
     "main_page": "Main Page",
     "phone": "Phone",
     "products": "Products",
@@ -120,7 +121,7 @@
       "button_text": "About Us"
     }
   },
-  "LoginPage": {
+  "LogInPage": {
     "email": "Email",
     "password": "Password",
     "password_too_small": "Password is too short",
@@ -203,5 +204,7 @@
   "register_success": "Account created success",
   "register_error": "Account creation error",
   "log_in_success": "Log in success",
-  "log_in_error": "Log in error"
+  "log_in_error": "Log in error",
+  "log_out_success": "Log out success",
+  "log_out_error": "Log out error"
 }

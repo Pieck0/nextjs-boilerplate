@@ -2,10 +2,10 @@ import { CartDrawer } from "@/components/CartDrawer";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { getTranslations } from "next-intl/server";
 import { MenuDrawer } from "@/components/MenuDrawer";
+import MenuFields from "@/components/MenuFields";
+import { cookies } from "next/headers";
 
 async function Header() {
-  const t = await getTranslations("HomePage");
-
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
       <nav className="mx-auto px-4 sm:px-6 lg:px-8">
@@ -18,37 +18,8 @@ async function Header() {
           <div className="md:block">
             <div className="ml-10 flex space-x-8 items-center">
               <LanguageSwitcher />
-              <div className="min-[1230px]:flex space-x-8 items-center hidden">
-                <a
-                  href="/"
-                  className="text-gray-700 hover:text-amber-600 px-4 py-2 text-base font-semibold transition-colors relative group"
-                >
-                  {t("main_page")}
-                </a>
-                <a
-                  href="/products"
-                  className="text-gray-700 hover:text-amber-600 px-4 py-2 text-base font-semibold transition-colors relative group"
-                >
-                  {t("products")}
-                </a>
-                <a
-                  href="/about-us"
-                  className="text-gray-700 hover:text-amber-600 px-4 py-2 text-base font-semibold transition-colors relative group"
-                >
-                  {t("about_us")}
-                </a>
-                <a
-                  href="/contact"
-                  className="text-gray-700 hover:text-amber-600 px-4 py-2 text-base font-semibold transition-colors relative group"
-                >
-                  {t("contact")}
-                </a>
-                <a
-                  href="/log-in"
-                  className="text-gray-700 hover:text-amber-600 px-4 py-2 text-base font-semibold transition-colors relative group"
-                >
-                  {t("log_in")}
-                </a>
+              <div className="min-[1100px]:flex space-x-8 items-center hidden">
+                <MenuFields />
               </div>
               <CartDrawer />
               <MenuDrawer className="min-[1230px]:hidden" />

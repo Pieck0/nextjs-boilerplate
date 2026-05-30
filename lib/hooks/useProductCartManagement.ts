@@ -3,7 +3,7 @@ import { useProductQuantityInCart } from "@/lib/hooks/useProductQuantityInCart";
 import { trpc } from "@/trpc/client";
 import { useSetAtom } from "jotai";
 import { messageAtom } from "@/lib/atoms/message.atom";
-import { MessageType } from "@/components/MessageContainer";
+import { MessageType } from "@/lib/enums/MessageType.enum";
 import { CartAction } from "@/lib/enums/CartAction.enum";
 import { showModalAtom } from "../atoms/show-modal";
 import { ModalType } from "../enums/ModalType.enum";

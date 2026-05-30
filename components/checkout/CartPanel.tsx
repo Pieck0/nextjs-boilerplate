@@ -13,7 +13,6 @@ import { createOrderSchema } from "@/lib/trpcInputs/create-order-schema";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useSetAtom } from "jotai";
 import { messageAtom } from "@/lib/atoms/message.atom";
-import { MessageType } from "../MessageContainer";
 import { showModalAtom } from "@/lib/atoms/show-modal";
 import { ModalType } from "@/lib/enums/ModalType.enum";
 import Input from "../ui/input";

@@ -1,5 +1,5 @@
-import { MessageType } from "@/components/MessageContainer";
 import { atom } from "jotai";
+import { MessageType } from "@/lib/enums/MessageType.enum";
 
 export const messageAtom = atom<{
   /**

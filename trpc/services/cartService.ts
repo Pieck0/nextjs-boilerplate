@@ -1,5 +1,98 @@
 import prisma from "@/lib/prisma";
 
+export async function getCart(
+  userId: string | undefined,
+  sessionId: string | undefined,
+  languageCode?: string,
+) {
+  if (!userId && !sessionId) return null;
+  const cart = userId
+    ? await prisma.cart.findUnique({
+        where: {
+          userId: userId,
+        },
+        include: {
+          items: {
+            include: {
+              product: {
+                include: {
+                  translations: {
+                    where: {
+                      languageCode: languageCode || process.env.DEFAULT_LANG,
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      })
+    : await prisma.cart.findUnique({
+        where: {
+          sessionId,
+        },
+        include: {
+          items: {
+            include: {
+              product: {
+                include: {
+                  translations: {
+                    where: {
+                      languageCode: languageCode || process.env.DEFAULT_LANG,
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      });
+  // const cart =
+  //   (await prisma.cart.findUnique({
+  //     where: {
+  //       userId,
+  //     },
+  //     include: {
+  //       items: {
+  //         include: {
+  //           product: {
+  //             include: {
+  //               translations: {
+  //                 where: {
+  //                   languageCode: languageCode || process.env.DEFAULT_LANG,
+  //                 },
+  //               },
+  //             },
+  //           },
+  //         },
+  //       },
+  //     },
+  //   })) ??
+  //   (await prisma.cart.findUnique({
+  //     where: {
+  //       sessionId,
+  //     },
+  //     include: {
+  //       items: {
+  //         include: {
+  //           product: {
+  //             include: {
+  //               translations: {
+  //                 where: {
+  //                   languageCode: languageCode || process.env.DEFAULT_LANG,
+  //                 },
+  //               },
+  //             },
+  //           },
+  //         },
+  //       },
+  //     },
+  //   }));
+  console.log("AFTER GET CART: ", cart);
+
+  return cart;
+}
+
 export async function mergeSessionCartIntoUserCart({
   sessionId,
   userId,
@@ -8,7 +101,6 @@ export async function mergeSessionCartIntoUserCart({
   userId: string;
 }) {
   await prisma.$transaction(async (tx) => {
-    console.log("IN MERGING: ", sessionId, userId);
     const sessionCart = await tx.cart.findUnique({
       where: { sessionId },
       include: {

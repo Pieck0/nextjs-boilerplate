@@ -1,14 +1,10 @@
 "use client";
 
 import { messageAtom } from "@/lib/atoms/message.atom";
+import { MessageType } from "@/lib/enums/MessageType.enum";
 import { useAtomValue } from "jotai";
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
-
-export enum MessageType {
-  SUCCESS = "success",
-  ERROR = "error",
-}
 
 export default function MessageContainer() {
   const t = useTranslations();

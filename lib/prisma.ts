@@ -13,6 +13,11 @@ const prisma =
   globalForPrisma.prisma ||
   new PrismaClient({
     adapter,
+    omit: {
+      user: {
+        password: true,
+      },
+    },
   });
 
 if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;

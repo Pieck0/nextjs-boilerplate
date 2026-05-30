@@ -45,48 +45,54 @@ export const baseProcedure = t.procedure.use(async ({ ctx, next }) => {
 export const sessionProcedure = t.procedure.use(async ({ ctx, next }) => {
   const _cookies = await cookies();
   const session = _cookies.get("session")?.value;
-  if (session) {
-    const sessionExists = await prisma.session.findUnique({
-      where: {
-        id: session,
-        expires: {
-          gt: new Date(),
-        },
-      },
-    });
-    if (sessionExists) {
-      await prisma.session.update({
+
+  const sessionExists = session
+    ? await prisma.session.findUnique({
         where: {
           id: session,
+          expires: {
+            gt: new Date(),
+          },
         },
-        data: {
-          expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
+        include: {
+          user: true,
         },
-      });
-      return next({
-        ctx: {
-          ...ctx,
-          session: session,
-        },
-      });
-    }
+      })
+    : null;
+  if (sessionExists) {
+    await prisma.session.update({
+      where: {
+        id: session,
+      },
+      data: {
+        expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
+      },
+    });
+    return next({
+      ctx: {
+        ...ctx,
+        session: sessionExists,
+        user: sessionExists.user,
+      },
+    });
+  } else {
+    const newSession = await prisma.session.create({
+      data: {
+        expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
+      },
+    });
+    _cookies.set("session", newSession.id, {
+      httpOnly: true,
+      secure: process.env.ENV !== "DEV",
+      sameSite: "lax",
+      path: "/",
+      expires: newSession.expires,
+    });
+    return next({
+      ctx: {
+        ...ctx,
+        session: newSession,
+      },
+    });
   }
-  const newSession = await prisma.session.create({
-    data: {
-      expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
-    },
-  });
-  _cookies.set("session", newSession.id, {
-    httpOnly: true,
-    secure: process.env.ENV !== "DEV",
-    sameSite: "lax",
-    path: "/",
-    expires: newSession.expires,
-  });
-  return next({
-    ctx: {
-      ...ctx,
-      session: newSession.id,
-    },
-  });
 });

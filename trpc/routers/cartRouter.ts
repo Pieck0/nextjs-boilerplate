@@ -3,31 +3,14 @@ import { createTRPCRouter, sessionProcedure } from "../init";
 import prisma from "@/lib/prisma";
 import { getCurrentLanguage } from "@/lib/functions/getCurrentLanguage";
 import { TRPCError } from "@trpc/server";
+import { getCart } from "../services/cartService";
 
 export const cartRouter = createTRPCRouter({
   getCart: sessionProcedure.query(async (opts) => {
     const languageCode = await getCurrentLanguage();
-    if (opts.ctx.session) {
-      return await prisma.cart.findUnique({
-        where: {
-          sessionId: opts.ctx.session,
-        },
-        include: {
-          items: {
-            include: {
-              product: {
-                include: {
-                  translations: {
-                    where: {
-                      languageCode: languageCode || process.env.DEFAULT_LANG,
-                    },
-                  },
-                },
-              },
-            },
-          },
-        },
-      });
+    const session = opts.ctx.session;
+    if (session) {
+      return await getCart(session.user?.id, session.id, languageCode);
     }
   }),
 
@@ -41,18 +24,12 @@ export const cartRouter = createTRPCRouter({
     .mutation(async (opts) => {
       const { id, quantity } = opts.input;
       const session = opts.ctx.session;
+      const user = opts.ctx.user;
       const cart =
-        (await prisma.cart.findUnique({
-          where: {
-            sessionId: session,
-          },
-          include: {
-            items: true,
-          },
-        })) ??
+        (await getCart(user?.id, session.id)) ??
         (await prisma.cart.create({
           data: {
-            sessionId: session,
+            sessionId: session.id,
           },
         }));
 

@@ -1,11 +1,12 @@
 import { registerSchema } from "@/lib/trpcInputs/register-schema";
-import { baseProcedure, createTRPCRouter } from "../init";
+import { baseProcedure, createTRPCRouter, sessionProcedure } from "../init";
 import prisma from "@/lib/prisma";
 import bcrypt from "bcrypt";
 import { loginSchema } from "@/lib/trpcInputs/log-in-schema";
 import { cookies } from "next/headers";
 import { TRPCError } from "@trpc/server";
 import { mergeSessionCartIntoUserCart } from "../services/cartService";
+import c from "@/components/register/RegisterForm";
 
 const fakeHash = "8ZEM1nGvHkQgKRLTlILHeM5y5j7iG7zuEltPQkuYl1g=";
 
@@ -49,6 +50,11 @@ export const authRouter = createTRPCRouter({
     const userExists = await prisma.user.findUnique({
       where: {
         email: opts.input.email.toLowerCase().trim(),
+      },
+      select: {
+        id: true,
+        password: true,
+        cartId: true,
       },
     });
 
@@ -147,5 +153,46 @@ export const authRouter = createTRPCRouter({
     }
 
     return;
+  }),
+
+  logOut: sessionProcedure.mutation(async (opts) => {
+    const _cookies = await cookies();
+    const sessionId = _cookies.get("session")?.value;
+    await prisma.session.delete({
+      where: {
+        id: sessionId,
+      },
+    });
+    _cookies.delete("session");
+    return;
+  }),
+
+  me: baseProcedure.query(async (opts) => {
+    const _cookies = await cookies();
+    const sessionId = _cookies.get("session")?.value;
+    if (!sessionId) return null;
+    const session = await prisma.session.findUnique({
+      where: {
+        id: sessionId,
+        user: {
+          isNot: null,
+        },
+        expires: {
+          gt: new Date(),
+        },
+      },
+      include: {
+        user: {
+          include: {
+            cart: {
+              include: {
+                items: true,
+              },
+            },
+          },
+        },
+      },
+    });
+    return session;
   }),
 });

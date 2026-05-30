@@ -8,12 +8,12 @@ import { useSetAtom } from "jotai";
 import { messageAtom } from "@/lib/atoms/message.atom";
 import { useEffect, useRef, useState } from "react";
 import { useProductQuantityInCart } from "@/lib/hooks/useProductQuantityInCart";
-import { MessageType } from "./MessageContainer";
 import { ClipLoader } from "react-spinners";
 import { useTranslations } from "next-intl";
 import { trpc } from "@/trpc/client";
 import Image from "next/image";
 import Big from "big.js";
+import { MessageType } from "@/lib/enums/MessageType.enum";
 
 export default function CartProductTile({
   cartItem,

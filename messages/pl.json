@@ -102,6 +102,7 @@
     "footer_rights": "Wszystkie prawa zastrzeżone. Tworzone z ❤️ dla maluszków.",
     "links": "Linki",
     "log_in": "Zaloguj się",
+    "log_out": "Wyloguj się",
     "main_page": "Strona Główna",
     "phone": "Telefon",
     "products": "Produkty",
@@ -121,7 +122,7 @@
       "button_text": "O nas"
     }
   },
-  "LoginPage": {
+  "LogInPage": {
     "email": "Adres email",
     "password": "Hasło",
     "password_too_small": "Hasło jest za krótkie",
@@ -204,5 +205,7 @@
   "register_success": "Konto zostało utworzone",
   "register_error": "Wystąpił błąd podczas tworzenia konta",
   "log_in_success": "Zalogowano",
-  "log_in_error": "Wystąpił błąd podczas logowania"
+  "log_in_error": "Wystąpił błąd podczas logowania",
+  "log_out_success": "Wylogowano",
+  "log_out_error": "Wystąpił błąd podczas wylogowania"
 }
