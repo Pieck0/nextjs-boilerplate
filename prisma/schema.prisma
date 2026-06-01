@@ -16,6 +16,10 @@ enum OrderStatus {
   DELIVERED
 }
 
+enum Roles {
+  ADMIN
+}
+
 datasource db {
   provider = "postgresql"
 }
@@ -29,6 +33,7 @@ model user {
   cartId         Int?      @unique
   cart           cart?
   email_verified Boolean   @default(false)
+  roles          Roles[]
 }
 
 model session {

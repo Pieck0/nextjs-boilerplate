@@ -33,12 +33,14 @@
     "cta_subtitle": "Odkryj naszą kolekcję ręcznie robionych wełnianych akcesoriów dla Twoich maluchów",
     "cta_button": "Zobacz Kolekcję"
   },
+  "AdminLayout": {
+    "products": "Produkty"
+  },
   "CheckoutPage": {
     "cart": "Koszyk",
     "cart_empty": "Twój koszyk jest pusty",
     "create_order": "Złóż zamówienie",
     "email_required": "Adres email jest wymagany",
-    "email_invalid_format": "Adres email jest nieprawidłowy",
     "modal_content_remove_cart_item": "Czy na pewno chcesz usunąć ten produkt z koszyka?",
     "order_created": "Zamówienie zostało utworzone",
     "order_creation_error": "Wystąpił błąd podczas tworzenia zamówienia",
@@ -124,6 +126,7 @@
   },
   "LogInPage": {
     "email": "Adres email",
+    "email_invalid_format": "Adres email jest nieprawidłowy",
     "password": "Hasło",
     "password_too_small": "Hasło jest za krótkie",
     "log_in": "Zaloguj się",

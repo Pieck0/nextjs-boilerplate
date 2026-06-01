@@ -1,4 +1,4 @@
-import { initTRPC } from "@trpc/server";
+import { initTRPC, TRPCError } from "@trpc/server";
 import { cookies } from "next/headers";
 import { cache } from "react";
 import prisma from "@/lib/prisma";
@@ -93,6 +93,20 @@ export const sessionProcedure = t.procedure.use(async ({ ctx, next }) => {
         ...ctx,
         session: newSession,
       },
+    });
+  }
+});
+
+export const adminProcedure = sessionProcedure.use(async ({ ctx, next }) => {
+  if (ctx.session?.user?.roles?.includes("ADMIN")) {
+    return next({
+      ctx: {
+        ...ctx,
+      },
+    });
+  } else {
+    throw new TRPCError({
+      code: "FORBIDDEN",
     });
   }
 });
